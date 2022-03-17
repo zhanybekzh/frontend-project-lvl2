@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "my second hexlet project",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -15,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/zhanybekzh/frontend-project-lvl2/issues"
   },
-  "homepage": "https://github.com/zhanybekzh/frontend-project-lvl2#readme"
+  "homepage": "https://github.com/zhanybekzh/frontend-project-lvl2#readme",
+  "dependencies": {
+    "commander": "^9.0.0"
+  }
 }
