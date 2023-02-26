@@ -1,21 +1,49 @@
-const stylish = (ast) => {
-  let result = '{\n';
-  const analyzedBody = ast.map((line) => {
-    if (line.state === 'deleted') {
-      return `    - ${line.key}: ${line.value}`;
+import _ from 'lodash';
+
+const tabs = (depth) => ' '.repeat(4 * depth - 2);
+
+const printValue = (value, depth) => {
+  if (!_.isObject(value)) { return value; }
+
+  const content = Object
+    .entries(value)
+    .map(([key, val]) => `${tabs(depth)}  ${key}: ${printValue(val, depth + 1)}`)
+    .join('\n');
+
+  return `{\n${content}\n${tabs(depth - 1)}  }`;
+};
+
+const printLine = (depth, sign, key, value) => `${tabs(depth)}${sign} ${key}: ${printValue(value, depth + 1)}`;
+
+const stylish = (tree, depth = 1) => {
+  const content = [];
+
+  tree.forEach((child) => {
+    if (child.state === 'deleted') {
+      content.push(printLine(depth, '-', child.key, child.value));
     }
-    if (line.state === 'added') {
-      return `    + ${line.key}: ${line.value}`;
+    if (child.state === 'added') {
+      content.push(printLine(depth, '+', child.key, child.value));
     }
-    if (line.state === 'unchanged') {
-      return `      ${line.key}: ${line.value}`;
+    if (child.state === 'unchanged') {
+      content.push(printLine(depth, ' ', child.key, child.value));
     }
-    if (line.state === 'changed') {
-      return `    - ${line.key}: ${line.oldValue}\n    + ${line.key}: ${line.newValue}`;
+    if (child.state === 'changed') {
+      content.push(printLine(depth, '-', child.key, child.oldValue));
+      content.push(printLine(depth, '+', child.key, child.newValue));
     }
-    return '';
+    if (child.tree) {
+      content.push(`${tabs(depth)}  ${child.key}: {`);
+      content.push(...stylish(child.tree, depth + 1));
+      content.push(`${tabs(depth)}  }`);
+    }
   });
-  result += analyzedBody.join('\n');
-  result += '\n}';
-  return result;
-}
+
+  if (depth === 1) {
+    return `{\n${content.join('\n')}\n}`;
+  }
+
+  return content;
+};
+
+export default stylish;
