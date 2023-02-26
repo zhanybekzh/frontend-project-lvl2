@@ -46,7 +46,7 @@ const genDiffFunc = (pathFile1, pathFile2) => {
   });
   result += analyzedBody.join('\n');
   result += '\n}';
-  console.log(result);
+  return result;
 };
 
 export default genDiffFunc;
