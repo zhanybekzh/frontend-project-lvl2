@@ -17,6 +17,6 @@ test('genDiffFunc from json', () => {
 });
 
 test('genDiffFunc from yaml', () => {
-    const correctResult = 'correctResult.txt';
-    expect(genDiffFunc(getFixturePath('file1.yml'), getFixturePath('file2.yaml'))).toEqual(readFile(correctResult));
-  });
+  const correctResult = 'correctResult.txt';
+  expect(genDiffFunc(getFixturePath('file1.yml'), getFixturePath('file2.yaml'))).toEqual(readFile(correctResult));
+});
