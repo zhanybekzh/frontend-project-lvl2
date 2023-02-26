@@ -5,8 +5,6 @@ name: Node CI
 on:
   - push
   - pull_request
-env:
-  CI: true
 jobs:
   build:
     # The type of machine to run the job on
