@@ -22,6 +22,7 @@
   "homepage": "https://github.com/zhanybekzh/frontend-project-lvl2#readme",
   "dependencies": {
     "commander": "^10.0.0",
+    "js-yaml": "^4.1.0",
     "lodash": "^4.17.21"
   },
   "devDependencies": {

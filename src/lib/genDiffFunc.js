@@ -1,6 +1,7 @@
 import { readFileSync } from 'node:fs';
 import path from 'path';
 import _ from 'lodash';
+import parse from './parser.js';
 
 const genDiffFunc = (pathFile1, pathFile2) => {
   const currendDirectory = process.cwd();
@@ -8,8 +9,9 @@ const genDiffFunc = (pathFile1, pathFile2) => {
   const absolutePathFile2 = path.resolve(currendDirectory, pathFile2);
   const contentFile1 = readFileSync(absolutePathFile1);
   const contentFile2 = readFileSync(absolutePathFile2);
-  const objFile1 = JSON.parse(contentFile1);
-  const objFile2 = JSON.parse(contentFile2);
+
+  const objFile1 = parse(contentFile1, path.extname(pathFile1).slice(1));
+  const objFile2 = parse(contentFile2, path.extname(pathFile2).slice(1));
   const keys1 = Object.keys(objFile1);
   const keys2 = Object.keys(objFile2);
   const keysList = _.sortBy(_.union(keys1, keys2));
