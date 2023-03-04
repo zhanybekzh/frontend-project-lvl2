@@ -7,7 +7,7 @@ const printValue = (value, depth) => {
 
   const content = Object
     .entries(value)
-    .map(([key, val]) => `${tabs(depth)}  ${key}: ${printValue(val, depth + 1)}`)
+    .map(([key, value]) => `${tabs(depth)}  ${key}: ${printValue(value, depth + 1)}`)
     .join('\n');
 
   return `{\n${content}\n${tabs(depth - 1)}  }`;
