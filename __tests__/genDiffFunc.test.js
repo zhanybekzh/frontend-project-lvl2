@@ -23,4 +23,3 @@ test('genDiffFunc format plain', () => {
   const correctResult = 'plainResult.txt';
   expect(genDiffFunc(getFixturePath('file1.yml'), getFixturePath('file2.yaml'), 'plain')).toEqual(readFile(correctResult));
 });
-

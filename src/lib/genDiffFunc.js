@@ -29,7 +29,6 @@ const buildAst = (objFile1, objFile2) => {
   return analyzedArray;
 };
 
-
 const genDiffFunc = (pathFile1, pathFile2, formatter) => {
   const currendDirectory = process.cwd();
   const absolutePathFile1 = path.resolve(currendDirectory, pathFile1);
