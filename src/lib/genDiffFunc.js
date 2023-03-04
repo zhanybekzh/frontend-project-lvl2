@@ -2,7 +2,7 @@ import { readFileSync } from 'node:fs';
 import path from 'path';
 import _ from 'lodash';
 import parse from './parser.js';
-import stylish from '../formatters/stylish.js';
+import formatAst from '../formatters/index.js';
 
 const buildAst = (objFile1, objFile2) => {
   const keys1 = Object.keys(objFile1);
@@ -29,14 +29,6 @@ const buildAst = (objFile1, objFile2) => {
   return analyzedArray;
 };
 
-const formatAst = (ast, formatter) => {
-  switch (formatter) {
-    case 'stylish':
-      return stylish(ast);
-    default:
-      return stylish(ast);
-  }
-};
 
 const genDiffFunc = (pathFile1, pathFile2, formatter) => {
   const currendDirectory = process.cwd();
