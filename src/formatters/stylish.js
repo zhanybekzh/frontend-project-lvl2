@@ -3,10 +3,10 @@ import _ from 'lodash';
 const tabs = (depth) => ' '.repeat(4 * depth - 2);
 
 const printValue = (valueToPrint, depth) => {
-  if (!_.isObject(value)) { return value; }
+  if (!_.isObject(valueToPrint)) { return value; }
 
   const content = Object
-    .entries(value)
+    .entries(valueToPrint)
     .map(([key, valueToPrint]) => `${tabs(depth)}  ${key}: ${printValue(valueToPrint, depth + 1)}`)
     .join('\n');
 
