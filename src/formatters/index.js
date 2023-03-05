@@ -4,7 +4,7 @@ import json from './json.js';
 
 const formatAst = (ast, formatter) => {
   switch (formatter) {
-    case 'json': 
+    case 'json':
       return json(ast);
     case 'plain':
       return plain(ast);
