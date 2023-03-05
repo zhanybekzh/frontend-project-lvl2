@@ -2,12 +2,12 @@ import _ from 'lodash';
 
 const tabs = (depth) => ' '.repeat(4 * depth - 2);
 
-const printValue = (valueToPrint, depth) => {
-  if (!_.isObject(valueToPrint)) { return value; }
+const printValue = (value, depth) => {
+  if (!_.isObject(value)) { return value; }
 
   const content = Object
-    .entries(valueToPrint)
-    .map(([key, valueToPrint]) => `${tabs(depth)}  ${key}: ${printValue(valueToPrint, depth + 1)}`)
+    .entries(value)
+    .map(([key, val]) => `${tabs(depth)}  ${key}: ${printValue(val, depth + 1)}`)
     .join('\n');
 
   return `{\n${content}\n${tabs(depth - 1)}  }`;
