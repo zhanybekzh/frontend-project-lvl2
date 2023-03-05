@@ -7,11 +7,11 @@
 
 [![asciicast](https://asciinema.org/a/PLF7iX1kFPCBOdgsq1q5994ob.svg)](https://asciinema.org/a/PLF7iX1kFPCBOdgsq1q5994ob)
 
-## Compare two configuration files with complex value in stylish output format:
+### Compare two configuration files with complex value in stylish output format:
 [![asciicast](https://asciinema.org/a/qckKcd7lgRDkRTfdAw8g7qmyf.svg)](https://asciinema.org/a/qckKcd7lgRDkRTfdAw8g7qmyf)
 
-## Compare two configuration files with complex value in plain output format:
+### Compare two configuration files with complex value in plain output format:
 [![asciicast](https://asciinema.org/a/vKNM1jCwoIvV2CvsvfP13G9Mr.svg)](https://asciinema.org/a/vKNM1jCwoIvV2CvsvfP13G9Mr)
 
-## Compare two configuration files with complex value in json output format:
+### Compare two configuration files with complex value in json output format:
 [![asciicast](https://asciinema.org/a/oIZdgI5MxoHrRv6eHliN8Azyo.svg)](https://asciinema.org/a/oIZdgI5MxoHrRv6eHliN8Azyo)
