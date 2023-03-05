@@ -16,33 +16,28 @@ const printValue = (value, depth) => {
 const printLine = (depth, sign, key, value) => `${tabs(depth)}${sign} ${key}: ${printValue(value, depth + 1)}`;
 
 const stylish = (tree, depth = 1) => {
-  const content = [];
-
-  tree.forEach((child) => {
+  const content = tree.map((child) => {
     if (child.state === 'deleted') {
-      content.push(printLine(depth, '-', child.key, child.value));
+       return printLine(depth, '-', child.key, child.value);
     }
     if (child.state === 'added') {
-      content.push(printLine(depth, '+', child.key, child.value));
+      return printLine(depth, '+', child.key, child.value);
     }
     if (child.state === 'unchanged') {
-      content.push(printLine(depth, ' ', child.key, child.value));
+      return printLine(depth, ' ', child.key, child.value);
     }
     if (child.state === 'changed') {
-      content.push(printLine(depth, '-', child.key, child.oldValue));
-      content.push(printLine(depth, '+', child.key, child.newValue));
+      return `${printLine(depth, '-', child.key, child.oldValue)}\n${printLine(depth, '+', child.key, child.newValue)}`;
     }
     if (child.tree) {
-      content.push(`${tabs(depth)}  ${child.key}: {`);
-      content.push(...stylish(child.tree, depth + 1));
-      content.push(`${tabs(depth)}  }`);
+      return `${tabs(depth)}  ${child.key}: {\n${stylish(child.tree, depth + 1).join('\n')}\n${tabs(depth)}  }`;
     }
-  });
+    return '';
+  })
 
   if (depth === 1) {
-    return `{\n${content.join('\n')}\n}`;
+    return `{\n${content.filter((item) => item).join('\n')}\n}`;
   }
-
   return content;
 };
 
