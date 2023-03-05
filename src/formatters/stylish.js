@@ -18,7 +18,7 @@ const printLine = (depth, sign, key, value) => `${tabs(depth)}${sign} ${key}: ${
 const stylish = (tree, depth = 1) => {
   const content = tree.map((child) => {
     if (child.state === 'deleted') {
-       return printLine(depth, '-', child.key, child.value);
+      return printLine(depth, '-', child.key, child.value);
     }
     if (child.state === 'added') {
       return printLine(depth, '+', child.key, child.value);
@@ -33,7 +33,7 @@ const stylish = (tree, depth = 1) => {
       return `${tabs(depth)}  ${child.key}: {\n${stylish(child.tree, depth + 1).join('\n')}\n${tabs(depth)}  }`;
     }
     return '';
-  })
+  });
 
   if (depth === 1) {
     return `{\n${content.filter((item) => item).join('\n')}\n}`;
