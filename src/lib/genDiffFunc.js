@@ -40,8 +40,6 @@ const genDiffFunc = (pathFile1, pathFile2, formatter) => {
   const objFile2 = parse(contentFile2, path.extname(pathFile2).slice(1));
 
   const ast = buildAst(objFile1, objFile2);
-  console.log(ast);
-  JSON.stringify(ast);
   return formatAst(ast, formatter);
 };
 
