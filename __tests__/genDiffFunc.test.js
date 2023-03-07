@@ -1,4 +1,3 @@
-import exp from 'constants';
 import { readFileSync } from 'fs';
 import path, { dirname } from 'path';
 import { fileURLToPath } from 'url';
@@ -15,7 +14,7 @@ const testCases = [
   ['file1.yml', 'file2.yaml', '', 'correctResult.txt'],
   ['file1.yml', 'file2.yaml', 'plain', 'plainResult.txt'],
   ['file1.json', 'file2.json', 'json', 'jsonRightResult.json'],
-]
+];
 
 test.each(testCases)(
   'genDiffFunc(%s, %s, %s)',
@@ -24,5 +23,5 @@ test.each(testCases)(
     const filePath2 = getFixturePath(file2);
     const expected = readFile(expectedResult);
     expect(genDiffFunc(filePath1, filePath2, format)).toEqual(expected);
-  }
-)
+  },
+);
