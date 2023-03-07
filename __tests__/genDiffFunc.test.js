@@ -1,3 +1,4 @@
+import exp from 'constants';
 import { readFileSync } from 'fs';
 import path, { dirname } from 'path';
 import { fileURLToPath } from 'url';
@@ -9,22 +10,19 @@ const __dirname = dirname(__filename);
 const getFixturePath = (filename) => path.join(__dirname, '..', '__fixtures__', filename);
 const readFile = (filename) => readFileSync(getFixturePath(filename), 'utf-8');
 
-test('genDiffFunc from json', () => {
-  const correctResult = 'correctResult.txt';
-  expect(genDiffFunc(getFixturePath('file1.json'), getFixturePath('file2.json'))).toEqual(readFile(correctResult));
-});
+const testCases = [
+  ['file1.json', 'file2.json', 'stylish', 'correctResult.txt'],
+  ['file1.yml', 'file2.yaml', '', 'correctResult.txt'],
+  ['file1.yml', 'file2.yaml', 'plain', 'plainResult.txt'],
+  ['file1.json', 'file2.json', 'json', 'jsonRightResult.json'],
+]
 
-test('genDiffFunc from yaml', () => {
-  const correctResult = 'correctResult.txt';
-  expect(genDiffFunc(getFixturePath('file1.yml'), getFixturePath('file2.yaml'))).toEqual(readFile(correctResult));
-});
-
-test('genDiffFunc format plain', () => {
-  const correctResult = 'plainResult.txt';
-  expect(genDiffFunc(getFixturePath('file1.yml'), getFixturePath('file2.yaml'), 'plain')).toEqual(readFile(correctResult));
-});
-
-test('genDiffFunc format json', () => {
-  const correctResult = 'jsonRightResult.json';
-  expect(genDiffFunc(getFixturePath('file1.json'), getFixturePath('file2.json'), 'json')).toEqual(readFile(correctResult));
-});
+test.each(testCases)(
+  'genDiffFunc(%s, %s, %s)',
+  (file1, file2, format, expectedResult) => {
+    const filePath1 = getFixturePath(file1);
+    const filePath2 = getFixturePath(file2);
+    const expected = readFile(expectedResult);
+    expect(genDiffFunc(filePath1, filePath2, format)).toEqual(expected);
+  }
+)
