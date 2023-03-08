@@ -1,6 +1,6 @@
 import _ from 'lodash';
 
-const formatValue = (value) => {
+const stringify = (value) => {
   if (_.isObject(value)) {
     return '[complex value]';
   }
@@ -14,19 +14,20 @@ const plain = (ast, path = '') => {
   const content = ast.map((child) => {
     const name = path ? `${path}.${child.key}` : child.key;
 
-    if (child.state === 'deleted') {
-      return `Property '${name}' was removed`;
+    switch (child.state) {
+      case 'deleted':
+        return `Property '${name}' was removed`;
+      case 'added':
+        return `Property '${name}' was added with value: ${stringify(child.value)}`;
+      case 'changed':
+        return `Property '${name}' was updated. From ${stringify(child.valueOfFirstFile)} to ${stringify(child.valueOfSecondFile)}`;
+      case 'tree':
+        return plain(child.tree, name);
+      case 'unchanged':
+        return '';
+      default:
+        throw new Error(`Unknown child state: '${child.state}'!`);
     }
-    if (child.state === 'added') {
-      return `Property '${name}' was added with value: ${formatValue(child.value)}`;
-    }
-    if (child.state === 'changed') {
-      return `Property '${name}' was updated. From ${formatValue(child.oldValue)} to ${formatValue(child.newValue)}`;
-    }
-    if (child.tree) {
-      return plain(child.tree, name);
-    }
-    return '';
   });
   return content.filter((item) => item).join('\n');
 };
