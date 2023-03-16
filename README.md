@@ -3,7 +3,7 @@
 [![Maintainability](https://api.codeclimate.com/v1/badges/a3eec5d2b257ed808ce7/maintainability)](https://codeclimate.com/github/zhanybekzh/frontend-project-lvl2/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/a3eec5d2b257ed808ce7/test_coverage)](https://codeclimate.com/github/zhanybekzh/frontend-project-lvl2/test_coverage)
 [![.github/workflows/nodejs.yml](https://github.com/zhanybekzh/frontend-project-lvl2/actions/workflows/nodejs.yml/badge.svg?branch=main&event=push)](https://github.com/zhanybekzh/frontend-project-lvl2/actions/workflows/nodejs.yml)
-### Utility for compare two configuration files and shows a difference.
+# Utility for compare two configuration files and shows a difference.
 
 It is a program with command-line interface (CLI) that generates a difference between two data structures or configuration files. Performs the following operations: reading files, parsing incoming data, building a tree of differences, forming the necessary output. The algorithm is based on tree recursion.
 
