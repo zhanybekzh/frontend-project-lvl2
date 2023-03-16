@@ -1,7 +1,7 @@
 {
   "name": "@hexlet/code",
   "version": "1.0.0",
-  "description": "",
+  "description": "Hexlet second project",
   "main": "./src/lib/genDiffFunc.js",
   "type": "module",
   "scripts": {
