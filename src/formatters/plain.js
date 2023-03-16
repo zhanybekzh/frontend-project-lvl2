@@ -21,10 +21,10 @@ const plain = (ast) => {
           return `Property '${name}' was added with value: ${stringify(child.value)}`;
         case 'changed':
           return `Property '${name}' was updated. From ${stringify(child.valueOfFirstFile)} to ${stringify(child.valueOfSecondFile)}`;
-        case 'tree':
+        case 'nested':
           return iter(child.tree, name);
         case 'unchanged':
-          return '';
+          return null;
         default:
           throw new Error(`Unknown child state: '${child.state}'!`);
       }

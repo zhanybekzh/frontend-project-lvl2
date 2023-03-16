@@ -13,7 +13,7 @@ const buildAst = (data1, data2) => {
       return { key, value: data2[key], state: 'added' };
     }
     if (_.isPlainObject(data1[key]) && _.isPlainObject(data2[key])) {
-      return { key, tree: buildAst(data1[key], data2[key]), state: 'tree' };
+      return { key, tree: buildAst(data1[key], data2[key]), state: 'nested' };
     }
     if (_.has(data1, key) && _.has(data2, key) && _.isEqual(data1[key], data2[key])) {
       return { key, value: data1[key], state: 'unchanged' };

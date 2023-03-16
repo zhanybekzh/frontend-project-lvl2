@@ -25,7 +25,7 @@ const stylish = (tree) => {
           return printLine(depth, '+', child.key, child.value);
         case 'changed':
           return `${printLine(depth, '-', child.key, child.valueOfFirstFile)}\n${printLine(depth, '+', child.key, child.valueOfSecondFile)}`;
-        case 'tree':
+        case 'nested':
           return `${tabs(depth)}  ${child.key}: {\n${iter(child.tree, depth + 1)}\n${tabs(depth)}  }`;
         case 'unchanged':
           return printLine(depth, ' ', child.key, child.value);
