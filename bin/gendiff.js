@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 import { Command } from 'commander/esm.mjs';
-import genDiff from '../src/genDiffFunc.js';
+import genDiff from '../src/lib/genDiffFunc.js';
 
 const program = new Command();
 

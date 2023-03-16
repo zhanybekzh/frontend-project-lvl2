@@ -1,8 +1,8 @@
 import { readFileSync } from 'node:fs';
 import path from 'path';
-import parse from './parser.js';
-import formatAst from './formatters/index.js';
-import buildAst from './buildAst.js';
+import parse from '../parser.js';
+import formatAst from '../formatters/index.js';
+import buildAst from '../buildAst.js';
 
 const getAbsolutePath = (pathfile) => {
   const currendDirectory = process.cwd();

@@ -1,3 +1,3 @@
-import genDiffFn from './genDiffFunc.js';
+import genDiffFn from './lib/genDiffFunc.js';
 
 export default genDiffFn;
