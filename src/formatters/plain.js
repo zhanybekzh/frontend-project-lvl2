@@ -14,19 +14,19 @@ const plain = (ast) => {
   const iter = (node, path) => {
     const content = node.map((child) => {
       const name = path ? `${path}.${child.key}` : child.key;
-      switch (child.state) {
+      switch (child.type) {
         case 'deleted':
           return `Property '${name}' was removed`;
         case 'added':
           return `Property '${name}' was added with value: ${stringify(child.value)}`;
         case 'changed':
-          return `Property '${name}' was updated. From ${stringify(child.valueOfFirstFile)} to ${stringify(child.valueOfSecondFile)}`;
+          return `Property '${name}' was updated. From ${stringify(child.value1)} to ${stringify(child.value2)}`;
         case 'nested':
           return iter(child.tree, name);
         case 'unchanged':
           return null;
         default:
-          throw new Error(`Unknown child state: '${child.state}'!`);
+          throw new Error(`Unknown child type: '${child.type}'!`);
       }
     });
     return content.filter((item) => item).join('\n');
