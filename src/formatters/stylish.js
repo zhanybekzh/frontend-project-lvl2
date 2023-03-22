@@ -15,7 +15,7 @@ const stringify = (value, depth) => {
 
 const printLine = (depth, sign, key, value) => `${getIndent(depth)}${sign} ${key}: ${stringify(value, depth + 1)}`;
 
-const stylish = (tree) => {
+const formatStylish = (tree) => {
   const iter = (node, depth) => {
     const content = node.map((child) => {
       switch (child.type) {
@@ -38,4 +38,4 @@ const stylish = (tree) => {
   return `{\n${iter(tree, 1)}\n}`;
 };
 
-export default stylish;
+export default formatStylish;

@@ -4,22 +4,22 @@ import parse from './parser.js';
 import formatAst from './formatters/index.js';
 import buildAst from './buildAst.js';
 
-const getAbsolutePath = (pathfile) => {
+const getAbsolutePath = (filePath) => {
   const currendDirectory = process.cwd();
-  return path.resolve(currendDirectory, pathfile);
+  return path.resolve(currendDirectory, filePath);
 };
 
-const getExtension = (pathfile) => path.extname(pathfile).slice(1);
+const getExtension = (filePath) => path.extname(filePath).slice(1);
 
-const genDiffFunc = (pathFile1, pathFile2, formatter = 'stylish') => {
-  const absolutePathFile1 = getAbsolutePath(pathFile1);
-  const absolutePathFile2 = getAbsolutePath(pathFile2);
-  const contentFile1 = readFileSync(absolutePathFile1);
-  const contentFile2 = readFileSync(absolutePathFile2);
+const getData = (filePath) => {
+  const absolutePathFile = getAbsolutePath(filePath);
+  const contentFile = readFileSync(absolutePathFile);
+  return parse(contentFile, getExtension(filePath));
+}
 
-  const data1 = parse(contentFile1, getExtension(pathFile1));
-  const data2 = parse(contentFile2, getExtension(pathFile2));
-
+const genDiffFunc = (filePath1, filePath2, formatter = 'stylish') => {
+  const data1 = getData(filePath1);
+  const data2 = getData(filePath2);
   const ast = buildAst(data1, data2);
   return formatAst(ast, formatter);
 };

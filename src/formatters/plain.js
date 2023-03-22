@@ -10,7 +10,7 @@ const stringify = (value) => {
   return value;
 };
 
-const plain = (ast) => {
+const formatPlain = (ast) => {
   const iter = (node, path) => {
     const content = node.map((child) => {
       const name = path ? `${path}.${child.key}` : child.key;
@@ -34,4 +34,4 @@ const plain = (ast) => {
   return iter(ast, '');
 };
 
-export default plain;
+export default formatPlain;
