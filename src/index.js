@@ -15,7 +15,7 @@ const getData = (filePath) => {
   const absolutePathFile = getAbsolutePath(filePath);
   const contentFile = readFileSync(absolutePathFile);
   return parse(contentFile, getExtension(filePath));
-}
+};
 
 const genDiffFunc = (filePath1, filePath2, formatter = 'stylish') => {
   const data1 = getData(filePath1);
